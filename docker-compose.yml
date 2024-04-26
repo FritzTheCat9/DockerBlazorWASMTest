@@ -1,0 +1,54 @@
+services:
+  dockerblazorwasmtest_api:
+    image: ${DOCKER_REGISTRY-}dockerblazorwasmtest_api
+    container_name: dockerblazorwasmtest_api
+    build:
+      context: .
+      dockerfile: DockerBlazorWASMTest.Api/Dockerfile
+    ports:
+      - 5000:5000
+      - 5001:5001
+    environment:
+      - ASPNETCORE_URLS=https://+:5001;http://+:5000
+      - ASPNETCORE_HTTP_PORTS=5000
+      - ASPNETCORE_HTTPS_PORTS=5001
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=password
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    volumes:
+      - ${USERPROFILE}/.aspnet/https:/https/
+
+  dockerblazorwasmtest_blazor:
+    image: ${DOCKER_REGISTRY-}dockerblazorwasmtest_blazor
+    container_name: dockerblazorwasmtest_blazor
+    build:
+      context: .
+      dockerfile: DockerBlazorWASMTest.Blazor/Dockerfile
+    ports:
+      - 7000:80
+      - 7001:443
+    environment:
+      - ASPNETCORE_URLS=https://+:7001;http://+:7000
+      - ASPNETCORE_HTTP_PORTS=7000
+      - ASPNETCORE_HTTPS_PORTS=7001
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - ${USERPROFILE}/.aspnet/https/certificate.crt:/etc/nginx/certificate.crt
+      - ${USERPROFILE}/.aspnet/https/private.key:/etc/nginx/private.key
+      
+  dockerblazorwasmtest_database:
+    image: mcr.microsoft.com/mssql/server:latest
+    container_name: dockerblazorwasmtest_database
+    shm_size: 4gb
+    restart: unless-stopped
+    ports:
+      - 1433:1433
+    environment:
+      MSSQL_SA_PASSWORD: 'Password1!'
+      ACCEPT_EULA: 'Y'
+    volumes:
+      - mssql_volume:/var/opt/mssql
+
+volumes:
+  mssql_volume:
+    driver: local
