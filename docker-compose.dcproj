@@ -12,5 +12,7 @@
   <ItemGroup>
     <None Include="docker-compose.yml" />
     <None Include=".dockerignore" />
+    <None Include="linux.env" />
+    <None Include="windows.env" />
   </ItemGroup>
 </Project>

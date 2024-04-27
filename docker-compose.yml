@@ -1,7 +1,8 @@
 services:
   dockerblazorwasmtest_api:
-    image: ${DOCKER_REGISTRY-}dockerblazorwasmtest_api
+    image: fritzthecat9/dockerblazorwasmtest_api:${SYSTEM_TAG}
     container_name: dockerblazorwasmtest_api
+    platform: ${PLATFORM}
     build:
       context: .
       dockerfile: DockerBlazorWASMTest.Api/Dockerfile
@@ -16,11 +17,12 @@ services:
       - ASPNETCORE_Kestrel__Certificates__Default__Password=password
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
     volumes:
-      - ${USERPROFILE}/.aspnet/https:/https/
+      - ${HOME_VARIABLE}/.aspnet/https:/https/
 
   dockerblazorwasmtest_blazor:
-    image: ${DOCKER_REGISTRY-}dockerblazorwasmtest_blazor
+    image: fritzthecat9/dockerblazorwasmtest_blazor:${SYSTEM_TAG}
     container_name: dockerblazorwasmtest_blazor
+    platform: ${PLATFORM}
     build:
       context: .
       dockerfile: DockerBlazorWASMTest.Blazor/Dockerfile
@@ -33,8 +35,8 @@ services:
       - ASPNETCORE_HTTPS_PORTS=7001
       - ASPNETCORE_ENVIRONMENT=Development
     volumes:
-      - ${USERPROFILE}/.aspnet/https/certificate.crt:/etc/nginx/certificate.crt
-      - ${USERPROFILE}/.aspnet/https/private.key:/etc/nginx/private.key
+      - ${HOME_VARIABLE}/.aspnet/https/certificate.crt:/etc/nginx/certificate.crt
+      - ${HOME_VARIABLE}/.aspnet/https/private.key:/etc/nginx/private.key
       
   dockerblazorwasmtest_database:
     image: mcr.microsoft.com/mssql/server:latest
