@@ -46,3 +46,14 @@ dotnet ef migrations add MIGRATION_NAME -o ./Migrations --startup-project ../Doc
 dotnet ef migrations add Init -o ./Migrations --startup-project ../DockerBlazorWASMTest.Api
 dotnet ef database update
 ```
+
+##### IMPORTANT - COPY CERTIFICATE TO RASPBERRY PI!!! (use scp) -> to: $HOME/.aspnet/https (change <raspberrypi_ip> to correct Raspberry Pi ip)
+```
+scp C:\Users\bartl\.aspnet\https\aspnetapp.pfx malinka@<raspberrypi_ip>:/home/malinka/Desktop
+scp C:\Users\bartl\.aspnet\https\private.key malinka@<raspberrypi_ip>:/home/malinka/Desktop
+scp C:\Users\bartl\.aspnet\https\certificate.crt malinka@<raspberrypi_ip>:/home/malinka/Desktop
+ssh malinka@<raspberrypi_ip>
+sudo mv /home/malinka/Desktop/aspnetapp.pfx /home/malinka/.aspnet/https
+sudo mv /home/malinka/Desktop/private.key /home/malinka/.aspnet/https
+sudo mv /home/malinka/Desktop/certificate.crt /home/malinka/.aspnet/https
+```
