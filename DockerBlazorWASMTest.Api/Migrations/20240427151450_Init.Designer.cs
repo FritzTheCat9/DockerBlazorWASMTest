@@ -3,16 +3,16 @@ using System;
 using DockerBlazorWASMTest.Api;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
 namespace DockerBlazorWASMTest.Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240426141014_Init")]
+    [Migration("20240427151450_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -21,26 +21,26 @@ namespace DockerBlazorWASMTest.Api.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "8.0.4")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("DockerBlazorWASMTest.Api.WeatherForecast", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateOnly>("Date")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Summary")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<int>("TemperatureC")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -50,51 +50,51 @@ namespace DockerBlazorWASMTest.Api.Migrations
                         new
                         {
                             Id = 1,
-                            Date = new DateOnly(2024, 4, 27),
-                            Summary = "Bracing",
-                            TemperatureC = -19
+                            Date = new DateTime(2024, 4, 28, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Summary = "Scorching",
+                            TemperatureC = 33
                         },
                         new
                         {
                             Id = 2,
-                            Date = new DateOnly(2024, 4, 27),
-                            Summary = "Freezing",
-                            TemperatureC = 11
+                            Date = new DateTime(2024, 4, 29, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Summary = "Cool",
+                            TemperatureC = 6
                         },
                         new
                         {
                             Id = 3,
-                            Date = new DateOnly(2024, 4, 27),
-                            Summary = "Scorching",
-                            TemperatureC = 30
+                            Date = new DateTime(2024, 4, 30, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Summary = "Balmy",
+                            TemperatureC = -15
                         },
                         new
                         {
                             Id = 4,
-                            Date = new DateOnly(2024, 4, 27),
-                            Summary = "Cool",
-                            TemperatureC = 28
+                            Date = new DateTime(2024, 5, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Summary = "Chilly",
+                            TemperatureC = 8
                         },
                         new
                         {
                             Id = 5,
-                            Date = new DateOnly(2024, 4, 27),
-                            Summary = "Hot",
-                            TemperatureC = 36
+                            Date = new DateTime(2024, 5, 2, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Summary = "Bracing",
+                            TemperatureC = -10
                         },
                         new
                         {
                             Id = 6,
-                            Date = new DateOnly(2024, 4, 27),
-                            Summary = "Hot",
-                            TemperatureC = 26
+                            Date = new DateTime(2024, 5, 3, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Summary = "Scorching",
+                            TemperatureC = 53
                         },
                         new
                         {
                             Id = 7,
-                            Date = new DateOnly(2024, 4, 27),
-                            Summary = "Hot",
-                            TemperatureC = 34
+                            Date = new DateTime(2024, 5, 4, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Summary = "Freezing",
+                            TemperatureC = 25
                         });
                 });
 #pragma warning restore 612, 618

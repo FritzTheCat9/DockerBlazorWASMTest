@@ -22,43 +22,43 @@ namespace DockerBlazorWASMTest.Api
             {
                 new() {
                     Id = 1,
-                    Date = DateOnly.FromDateTime(DateTime.Now.AddDays(1)),
+                    Date = DateTime.UtcNow.Date.AddDays(1).Date,
                     TemperatureC = Random.Shared.Next(-20, 55),
                     Summary = summaries[Random.Shared.Next(summaries.Length)]
                 },
                 new() {
                     Id = 2,
-                    Date = DateOnly.FromDateTime(DateTime.Now.AddDays(2)),
+                    Date = DateTime.UtcNow.Date.AddDays(2).Date,
                     TemperatureC = Random.Shared.Next(-20, 55),
                     Summary = summaries[Random.Shared.Next(summaries.Length)]
                 },
                 new() {
                     Id = 3,
-                    Date = DateOnly.FromDateTime(DateTime.Now.AddDays(3)),
+                    Date = DateTime.UtcNow.Date.AddDays(3).Date,
                     TemperatureC = Random.Shared.Next(-20, 55),
                     Summary = summaries[Random.Shared.Next(summaries.Length)]
                 },
                 new() {
                     Id = 4,
-                    Date = DateOnly.FromDateTime(DateTime.Now.AddDays(4)),
+                    Date = DateTime.UtcNow.Date.AddDays(4).Date,
                     TemperatureC = Random.Shared.Next(-20, 55),
                     Summary = summaries[Random.Shared.Next(summaries.Length)]
                 },
                 new() {
                     Id = 5,
-                    Date = DateOnly.FromDateTime(DateTime.Now.AddDays(5)),
+                    Date = DateTime.UtcNow.Date.AddDays(5).Date,
                     TemperatureC = Random.Shared.Next(-20, 55),
                     Summary = summaries[Random.Shared.Next(summaries.Length)]
                 },
                 new() {
                     Id = 6,
-                    Date = DateOnly.FromDateTime(DateTime.Now.AddDays(6)),
+                    Date = DateTime.UtcNow.Date.AddDays(6).Date,
                     TemperatureC = Random.Shared.Next(-20, 55),
                     Summary = summaries[Random.Shared.Next(summaries.Length)]
                 },
                 new() {
                     Id = 7,
-                    Date = DateOnly.FromDateTime(DateTime.Now.AddDays(7)),
+                    Date = DateTime.UtcNow.Date.AddDays(7).Date,
                     TemperatureC = Random.Shared.Next(-20, 55),
                     Summary = summaries[Random.Shared.Next(summaries.Length)]
                 },

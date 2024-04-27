@@ -26,7 +26,7 @@ var connectionString = builder.Configuration.GetValue<string>("ConnectionString"
 
 builder.Services.AddDbContext<AppDbContext>(x =>
 {
-    x.UseSqlServer(connectionString);
+    x.UseNpgsql(connectionString);
 });
 
 builder.Services.AddHostedService<DatabaseInitializer>();

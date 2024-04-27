@@ -39,18 +39,19 @@ services:
       - ${HOME_VARIABLE}/.aspnet/https/private.key:/etc/nginx/private.key
       
   dockerblazorwasmtest_database:
-    image: mcr.microsoft.com/mssql/server:latest
+    image: postgres:latest
     container_name: dockerblazorwasmtest_database
     shm_size: 4gb
     restart: unless-stopped
     ports:
-      - 1433:1433
+      - 5432:5432
     environment:
-      MSSQL_SA_PASSWORD: 'Password1!'
-      ACCEPT_EULA: 'Y'
+      POSTGRES_DB: DockerBlazorWASMTest
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
     volumes:
-      - mssql_volume:/var/opt/mssql
+      - postgres_volume:/var/lib/postgresql/data
 
 volumes:
-  mssql_volume:
+  postgres_volume:
     driver: local
